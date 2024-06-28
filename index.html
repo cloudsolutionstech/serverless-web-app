@@ -1,0 +1,31 @@
+<!-- Update your index.html file to use the API Invoke URL from the CloudFormation output. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serverless Web App</title>
+</head>
+<body>
+    <h1>Serverless Web App using CloudFormation Template</h1>
+    <div id="content"></div>
+    <script>
+        const apiUrl = 'https://YOUR_API_ID.execute-api.YOUR_REGION.amazonaws.com/prod/items'; // Replace with the actual URL from CloudFormation output
+
+        async function fetchItems() {
+            const response = await fetch(apiUrl);
+            const items = await response.json();
+            const contentDiv = document.getElementById('content');
+            items.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.textContent = JSON.stringify(item);
+                contentDiv.appendChild(itemDiv);
+            });
+        }
+
+        fetchItems();
+    </script>
+</body>
+</html>
+
